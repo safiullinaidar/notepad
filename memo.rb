@@ -23,7 +23,7 @@ class Memo < Post
   end
 
   def load_data(data_hash)
-    super
-    @text = data_hash[:text].split('\n')
+    super(data_hash)
+    @text = data_hash['text'].split('\n')
   end
 end

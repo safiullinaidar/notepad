@@ -25,6 +25,6 @@ class Link < Post
 
   def load_data(data_hash)
     super
-    @url = data_hash[:url]
+    @url = data_hash['url']
   end
 end

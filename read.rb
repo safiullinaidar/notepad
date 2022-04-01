@@ -37,7 +37,13 @@ end.parse!
 
 # Вызываем метод find класса Post, который найдет нам нужные записи в
 # соответствии с запросом. Записываем то, что он вернет в переменную result.
-result = Post.find(options[:limit], options[:type], options[:id])
+result = if options[:id].nil?
+           # Если id не передали, ищем все записи по параметрам
+           Post.find_all(options[:limit], options[:type])
+         else
+           # Если передали — забиваем на остальные параметры и ищем по id
+           Post.find_by_id(options[:id])
+         end
 
 if result.is_a? Post
   # Если результат — это один объект класса Post, значит выводим его
